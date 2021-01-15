@@ -3,6 +3,7 @@
 package de.rki.coronawarnapp.util.formatter
 
 import android.content.Context
+import de.rki.coronawarnapp.R
 import de.rki.coronawarnapp.contactdiary.util.getLocale
 import de.rki.coronawarnapp.contactdiary.util.toFormattedDay
 import de.rki.coronawarnapp.server.protocols.internal.stats.KeyFigureCardOuterClass
@@ -26,10 +27,10 @@ fun getPrimaryLabel(instant: Instant?, context: Context): String {
     val yesterday = today.minusDays(1)
     return when (val localDate = LocalDate(instant)) {
         today -> {
-            "Today"
+            context.getString(R.string.statistics_primary_value_today)
         }
         yesterday -> {
-            "Yesterday"
+            context.getString(R.string.statistics_primary_value_yesterday)
         }
         else -> {
             localDate.toFormattedDay(context.getLocale())
