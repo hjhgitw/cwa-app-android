@@ -3,6 +3,7 @@ package de.rki.coronawarnapp.statistics.ui.homecards.cards
 import android.view.ViewGroup
 import de.rki.coronawarnapp.R
 import de.rki.coronawarnapp.databinding.HomeStatisticsCardsIncidenceLayoutBinding
+import de.rki.coronawarnapp.server.protocols.internal.stats.KeyFigureCardOuterClass
 import de.rki.coronawarnapp.statistics.IncidenceStats
 import de.rki.coronawarnapp.statistics.ui.homecards.StatisticsCardAdapter
 
@@ -24,7 +25,16 @@ class IncidenceCard(parent: ViewGroup) :
         payloads: List<Any>
     ) -> Unit = { item, payloads ->
         val stats = item.stats as IncidenceStats
-        val value = stats.keyFigures[0].value
-        viewBinding.value.valuePrimary.text = value.toString()
+
+        viewBinding.value.iconInfo.setOnClickListener {
+            item.onHelpAction.invoke(item.stats)
+        }
+
+        val primaryFigure =
+            stats.keyFigures.firstOrNull { it.rank == KeyFigureCardOuterClass.KeyFigure.Rank.PRIMARY }
+
+        if (primaryFigure != null) {
+            viewBinding.value.valuePrimary.text = primaryFigure.value.toString()
+        }
     }
 }
