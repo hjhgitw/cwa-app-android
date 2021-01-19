@@ -402,12 +402,12 @@
         <item name="android:background">@drawable/contact_diary_card_ripple</item>
     </style>
 
-    <style name="StatisticsCardInfoButton" parent="buttonIcon">
-        <item name="android:height">@dimen/circle_icon_big</item>
-        <item name="android:width">@dimen/circle_icon_big</item>
+    <style name="StatisticsCardInfoButton" parent="@style/Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">@dimen/radius_info_button</item>
+        <item name="android:layout_height">@dimen/radius_info_button</item>
         <item name="android:src">@drawable/ic_info</item>
-        <item name="android:padding">@dimen/circle_icon_big_padding</item>
         <item name="android:contentDescription">@string/statistics_info_button</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
     </style>
 
     <style name="StatisticsCardPrimaryTitle" parent="headline5" />
